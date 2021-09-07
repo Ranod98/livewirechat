@@ -13,7 +13,16 @@ class Conversation extends Model
 
     protected $dates = ['last_message_at'];
 
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     public function users(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withPivot('read_at')->withTimestamps()->oldest();
+    }
+
+    public function messages(){
+       return $this->hasMany(Message::class)->oldest();
     }
 }

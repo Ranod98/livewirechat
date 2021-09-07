@@ -8,10 +8,19 @@ use Illuminate\Http\Request;
 
 class ConversationController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
-        $conversations = Conversation::get();
+
+        $conversations = $request->user()->conversations;
 
         return view('conversations.index',compact('conversations'));
     }//end of index
+
+    public function show(Conversation $conversation ,Request $request){
+
+        $conversations = $request->user()->conversations;
+
+        return view('conversations.show',compact('conversations','conversation'));
+
+    }//end of show
 }//end of conversation
