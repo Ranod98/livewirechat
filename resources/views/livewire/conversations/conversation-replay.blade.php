@@ -4,6 +4,7 @@
 <form action="#" class="bg-light" x-data="conversationReplayState()" wire:submit.prevent="replay" enctype="multipart/form-data">
     <div class="input-group">
         <input type="text" placeholder="type"
+               name="body"
                wire:model="body"
                x-on:keydown.enter="submit"
                aria-describedby="button-addon2"

@@ -18,6 +18,10 @@ class Conversation extends Model
         return 'uuid';
     }
 
+    public function others(){
+       return $this->users()->where('user_id','!=' ,auth()->id());
+    }
+
     public function users(){
         return $this->belongsToMany(User::class)->withPivot('read_at')->withTimestamps()->oldest();
     }
